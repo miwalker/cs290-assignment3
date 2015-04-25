@@ -1,1 +1,9 @@
-You log goes in this  file.
+Start: Sat, 25 Apr 2015 13:26:14 -0500
+End: Sat, 25 Apr 2015 17:56:03 -0500 
+Tasks: completed all javascript varaibles, objects, and functions. passed all tests.
+Start: Sat, 25 Apr 2015 13:10:00 -0500
+End: Sat, 25 Apr 2015 13:26:13 -0500 
+Tasks: copied over assignment files
+Start: Fri, 24 Apr 2015 15:00:00 -0500
+End: Fri, 24 Apr 2015 15:34:41 -0500 
+Tasks: Initial commit
