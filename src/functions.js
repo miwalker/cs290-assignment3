@@ -14,8 +14,8 @@
 
 //your code here
 function uselessFunction() {
-	useless = null;
-	return useless;
+  var useless = null;
+  return useless;
 }
 //end your code
 
@@ -33,12 +33,18 @@ var barType = typeof bar;
 */
 
 //your code here
-bar = function(doubleArray) {
-	for (let i of doubleArray) {
-		try {
-			doubleArray[i] *= 2;
-		}
-		catch
+
+bar = function (doubleArray) {
+  var i;
+  for (i = 0; i < doubleArray.length; i++) {
+      doubleArray[i] *= 2;
+      if (isNaN(doubleArray[i])) {
+          return false;
+      }
+  }
+  return true;
+};
+
 //end your code
 
 /**
@@ -49,9 +55,9 @@ bar = function(doubleArray) {
 * @property {string} message - the commit message
 */
 function GitLog(hash, date, message) {
-    this.hash = hash;
-    this.date = date;
-    this.message = message;
+  this.hash = hash;
+  this.date = date;
+  this.message = message;
 }
 
 /**
@@ -74,5 +80,19 @@ function GitLog(hash, date, message) {
 */
 
 //your code here
-
+function parseGit(logArray) {
+  var gitLogArray = [];
+  var i;
+  for (i = 0; i < logArray.length; i++) {
+      var splitLog = [];
+      splitLog = logArray[i].split(" ");
+      for (var ii = 8; ii < splitLog.length; ii++) {
+          splitLog[7] += " " + splitLog[ii];
+      }
+      splitLog[7] = splitLog[7].replace("\"","");
+      splitLog[7] = splitLog[7].replace("\"","");
+      gitLogArray[i] = new GitLog(splitLog[0], new Date(splitLog[1] + " " + splitLog[2] + " " + splitLog[3] + " " + splitLog[4] + " " + splitLog[5] + " " + splitLog[6]), splitLog[7]);
+  }
+  return gitLogArray;
+}
 //end your code

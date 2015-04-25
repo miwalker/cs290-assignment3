@@ -9,10 +9,16 @@
 */
 
 function returnObjectLiteral() {
-  //your code here
-  return undefined; //Modify ONLY this line
-  //end your code
+  myObject = {
+		type: "Goldfish",
+		brand: "Pepperidge Farm",
+		flavor: "Cheddar",
+		count: 2000
+	};
+	return myObject;
 }
+
+var object = new returnObjectLiteral();
 
 /**
 * Create a constructor function for a `MessageLog` object.
@@ -38,7 +44,54 @@ function returnObjectLiteral() {
 */
 
 //your code here
-
+function MessageLog(user) {
+	this.user = user;
+	this.numSent = 0;
+	this.numReceived = 0;
+	this.sentMessages = [];
+	this.receivedMessages = [];
+	this.logMessage = function (messageText, direction) {
+		if (direction == 1) {
+			if (this.numReceived < 5) {
+				for (var i = (this.receivedMessages.length - 1); i >= 0; i--) {
+					this.receivedMessages[i + 1] = this.receivedMessages[i];
+				}
+				this.receivedMessages[0] = messageText;
+			}
+			else {
+				for (var i = 3; i >= 0; i--) {
+					this.receivedMessages[i + 1] = this.receivedMessages[i];
+				}
+				this.receivedMessages[0] = messageText;
+			}
+			this.numReceived++;
+		}
+		else if (direction == 0) {
+			if (this.numSent < 5) {
+				for (var i = (this.sentMessages.length - 1); i >= 0; i--) {
+					this.sentMessages[i + 1] = this.sentMessages[i];
+				}
+				this.sentMessages[0] = messageText;
+			}
+			else {
+				for (var i = 3; i >= 0; i--) {
+					this.sentMessages[i + 1] = this.sentMessages[i];
+				}
+				this.sentMessages[0] = messageText;
+			}
+			this.numSent++;
+		}
+	}
+	this.getSentMessage = function(n) {
+		return this.sentMessages[n];
+	}
+	this.totalSent = function () {
+		return this.numSent;	
+	}
+	this.totalReceived = function () {
+		return this.numReceived;
+	}
+}
 //end your code
 
 /**
@@ -47,7 +100,9 @@ function returnObjectLiteral() {
 * received.
 */
 //your code here
-
+MessageLog.prototype.lastReceivedMessage = function() {
+	return this.receivedMessages[0];
+}
 //end your code
 
 /**
@@ -57,5 +112,8 @@ function returnObjectLiteral() {
 */
 
 //your code here
-
+var myLog = new MessageLog("BlackHatGuy");
+myLog.logMessage("foo", 1);
+myLog.logMessage("bar", 1);
+myLog.logMessage("baz", 1);
 //end your code
